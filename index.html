@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadoras Financieras</title>
     <style>
+        /* Reset y estilo base */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             background-color: #f4f6f8;
             color: #333;
             margin: 0;
@@ -116,11 +117,12 @@
 <body>
     <div class="container">
         <h1>Calculadoras Financieras</h1>
-        <p class="instructions">Estas herramientas te ayudarán a tomar decisiones financieras informadas. Ingresa los datos requeridos en cada calculadora y recibe recomendaciones basadas en los resultados.</p>
+        <p class="instructions">Estas herramientas están diseñadas para ayudarte a tomar decisiones informadas sobre tus finanzas, tanto si estás considerando un préstamo como si deseas invertir. Las calculadoras te ayudarán a entender cómo funcionan los intereses, las tasas de crecimiento y otros conceptos clave.</p>
 
         <!-- Interés Simple -->
         <div class="section">
             <h2>1. Cálculo de Interés Simple</h2>
+            <p class="instructions">El interés simple es aquel que se calcula solo sobre el monto inicial del capital. Este tipo de interés es común en préstamos cortos o inversiones que no generen intereses sobre los intereses acumulados.</p>
             <label for="capital">Capital Inicial (en $):</label>
             <input type="number" id="capital" placeholder="Ej: 1000" required>
             <label for="tasa">Tasa de Interés Anual (%):</label>
@@ -136,6 +138,7 @@
         <!-- Interés Compuesto -->
         <div class="section">
             <h2>2. Cálculo de Interés Compuesto</h2>
+            <p class="instructions">El interés compuesto se calcula sobre el monto inicial y sobre los intereses que se van generando. Este tipo de interés es más común en inversiones a largo plazo, ya que permite que tu dinero crezca de forma acelerada.</p>
             <label for="capitalCompuesto">Capital Inicial (en $):</label>
             <input type="number" id="capitalCompuesto" placeholder="Ej: 1000" required>
             <label for="tasaCompuesto">Tasa de Interés Anual (%):</label>
@@ -145,12 +148,14 @@
             <button onclick="calcularInteresCompuesto()">Calcular Interés Compuesto</button>
 
             <div id="resultadoCompuesto" class="result"></div>
+            <div id="recomendacionCompuesto" class="recommendation"></div>
             <div id="alertaCompuesto" class="alert"></div>
         </div>
 
-        <!-- Rentabilidad de Inversión -->
+        <!-- Rentabilidad de una Inversión -->
         <div class="section">
             <h2>3. Rentabilidad de una Inversión</h2>
+            <p class="instructions">La rentabilidad te muestra qué tan efectiva fue tu inversión comparando el valor final con el valor inicial. Este cálculo es esencial para evaluar el rendimiento de tus inversiones.</p>
             <label for="valorInicial">Valor Inicial de la Inversión (en $):</label>
             <input type="number" id="valorInicial" placeholder="Ej: 1000" required>
             <label for="valorFinal">Valor Final de la Inversión (en $):</label>
@@ -158,11 +163,14 @@
             <button onclick="calcularRentabilidad()">Calcular Rentabilidad</button>
 
             <div id="resultadoRentabilidad" class="result"></div>
+            <div id="recomendacionRentabilidad" class="recommendation"></div>
+            <div id="alertaRentabilidad" class="alert"></div>
         </div>
 
         <!-- Balance Financiero -->
         <div class="section">
             <h2>4. Cálculo de Balance Financiero</h2>
+            <p class="instructions">Esta calculadora te ayuda a determinar si tus ingresos cubren tus gastos. Un balance positivo indica que puedes ahorrar, mientras que uno negativo sugiere que necesitas ajustar tus gastos.</p>
             <label for="ingresos">Ingresos Mensuales (en $):</label>
             <input type="number" id="ingresos" placeholder="Ej: 3000" required>
             <label for="gastos">Gastos Mensuales (en $):</label>
@@ -173,23 +181,26 @@
             <div id="recomendacionBalance" class="recommendation"></div>
         </div>
 
-        <!-- Valor Futuro de la Inversión -->
+        <!-- Valor Futuro de una Inversión -->
         <div class="section">
-            <h2>5. Cálculo del Valor Futuro</h2>
+            <h2>5. Cálculo del Valor Futuro de una Inversión</h2>
+            <p class="instructions">El valor futuro te ayuda a entender cómo crecerá tu inversión con el paso del tiempo, considerando la tasa de interés. Este cálculo es crucial si deseas saber cuánto generará tu inversión a largo plazo.</p>
             <label for="capitalFuturo">Capital Inicial (en $):</label>
-            <input type="number" id="capitalFuturo" placeholder="Ej: 1000" required>
+            <input type="number" id="capitalFuturo" placeholder="Ej: 2000" required>
             <label for="tasaFuturo">Tasa de Interés Anual (%):</label>
-            <input type="number" id="tasaFuturo" placeholder="Ej: 5" required>
+            <input type="number" id="tasaFuturo" placeholder="Ej: 6" required>
             <label for="tiempoFuturo">Tiempo (en años):</label>
-            <input type="number" id="tiempoFuturo" placeholder="Ej: 3" required>
+            <input type="number" id="tiempoFuturo" placeholder="Ej: 5" required>
             <button onclick="calcularValorFuturo()">Calcular Valor Futuro</button>
 
             <div id="resultadoFuturo" class="result"></div>
+            <div id="recomendacionFuturo" class="recommendation"></div>
         </div>
 
-        <!-- CAGR -->
+        <!-- CAGR (Tasa de Crecimiento Anual Compuesta) -->
         <div class="section">
-            <h2>6. Cálculo de CAGR</h2>
+            <h2>6. Cálculo del CAGR</h2>
+            <p class="instructions">La Tasa de Crecimiento Anual Compuesta (CAGR) te muestra el crecimiento promedio anual de una inversión durante un período determinado. Es útil para comparar distintas inversiones.</p>
             <label for="valorInicialCAGR">Valor Inicial (en $):</label>
             <input type="number" id="valorInicialCAGR" placeholder="Ej: 1000" required>
             <label for="valorFinalCAGR">Valor Final (en $):</label>
@@ -199,71 +210,140 @@
             <button onclick="calcularCAGR()">Calcular CAGR</button>
 
             <div id="resultadoCAGR" class="result"></div>
+            <div id="recomendacionCAGR" class="recommendation"></div>
         </div>
 
         <div class="note">
             <p class="example">Ejemplo: Si tu tasa es del 5%, el capital inicial es $1000 y el tiempo es de 3 años, puedes usar estas calculadoras para ver cómo crecerá tu dinero, comparar diferentes tasas de interés, y elegir la mejor opción de inversión.</p>
         </div>
+
     </div>
 
     <script>
+        // Funciones para calcular y dar recomendaciones
+
+        // Interés Simple
         function calcularInteresSimple() {
-            var capital = parseFloat(document.getElementById('capital').value);
-            var tasa = parseFloat(document.getElementById('tasa').value) / 100;
-            var tiempo = parseFloat(document.getElementById('tiempo').value);
-            google.script.run.withSuccessHandler(function(result) {
-                document.getElementById('resultadoSimple').innerText = `Interés Simple: $${result.toFixed(2)}`;
-                document.getElementById('recomendacionSimple').innerText = `Recomendación: El interés simple es útil para plazos cortos o tasas bajas.`;
-            }).calcularInteresSimple(capital, tasa, tiempo);
+            let capital = parseFloat(document.getElementById('capital').value);
+            let tasa = parseFloat(document.getElementById('tasa').value) / 100;
+            let tiempo = parseFloat(document.getElementById('tiempo').value);
+            
+            if (!capital || !tasa || !tiempo) {
+                alert("Por favor ingresa todos los valores.");
+                return;
+            }
+            
+            let interes = capital * tasa * tiempo;
+            document.getElementById('resultadoSimple').innerText = `El interés generado es $${interes.toFixed(2)}`;
+            
+            // Recomendación
+            if (tasa > 20) {
+                document.getElementById('recomendacionSimple').innerText = "¡Alerta! La tasa de interés es muy alta. Revisa si puedes manejar este pago.";
+            } else {
+                document.getElementById('recomendacionSimple').innerText = "La tasa es razonable. Considera tus objetivos antes de tomar decisiones.";
+            }
         }
 
+        // Interés Compuesto
         function calcularInteresCompuesto() {
-            var capital = parseFloat(document.getElementById('capitalCompuesto').value);
-            var tasa = parseFloat(document.getElementById('tasaCompuesto').value) / 100;
-            var tiempo = parseFloat(document.getElementById('tiempoCompuesto').value);
-            google.script.run.withSuccessHandler(function(result) {
-                document.getElementById('resultadoCompuesto').innerText = `Interés Compuesto: $${result.toFixed(2)}`;
-                if (tasa > 0.5) {
-                    document.getElementById('alertaCompuesto').innerText = '¡Advertencia! La tasa de interés es muy alta, verifica si es realista.';
-                }
-            }).calcularInteresCompuesto(capital, tasa, tiempo);
+            let capital = parseFloat(document.getElementById('capitalCompuesto').value);
+            let tasa = parseFloat(document.getElementById('tasaCompuesto').value) / 100;
+            let tiempo = parseFloat(document.getElementById('tiempoCompuesto').value);
+            
+            if (!capital || !tasa || !tiempo) {
+                alert("Por favor ingresa todos los valores.");
+                return;
+            }
+
+            let montoFinal = capital * Math.pow(1 + tasa, tiempo);
+            document.getElementById('resultadoCompuesto').innerText = `El monto final es $${montoFinal.toFixed(2)}`;
+
+            // Recomendación
+            if (tasa < 3) {
+                document.getElementById('alertaCompuesto').innerText = "¡Alerta! La tasa de inversión es baja, el retorno será muy modesto.";
+            } else {
+                document.getElementById('alertaCompuesto').innerText = "";
+            }
         }
 
+        // Rentabilidad de Inversión
         function calcularRentabilidad() {
-            var valorInicial = parseFloat(document.getElementById('valorInicial').value);
-            var valorFinal = parseFloat(document.getElementById('valorFinal').value);
-            google.script.run.withSuccessHandler(function(result) {
-                document.getElementById('resultadoRentabilidad').innerText = `Rentabilidad: ${result.toFixed(2)}%`;
-            }).calcularRentabilidad(valorInicial, valorFinal);
+            let valorInicial = parseFloat(document.getElementById('valorInicial').value);
+            let valorFinal = parseFloat(document.getElementById('valorFinal').value);
+            
+            if (!valorInicial || !valorFinal) {
+                alert("Por favor ingresa todos los valores.");
+                return;
+            }
+
+            let rentabilidad = ((valorFinal - valorInicial) / valorInicial) * 100;
+            document.getElementById('resultadoRentabilidad').innerText = `Rentabilidad: ${rentabilidad.toFixed(2)}%`;
         }
 
+        // Balance Financiero
         function calcularBalance() {
-            var ingresos = parseFloat(document.getElementById('ingresos').value);
-            var gastos = parseFloat(document.getElementById('gastos').value);
-            google.script.run.withSuccessHandler(function(result) {
-                document.getElementById('resultadoBalance').innerText = `Balance Financiero: $${result.toFixed(2)}`;
-                if (result < 0) {
-                    document.getElementById('recomendacionBalance').innerText = 'Advertencia: Tu balance es negativo, es hora de revisar tus gastos.';
-                }
-            }).calcularBalance(ingresos, gastos);
+            let ingresos = parseFloat(document.getElementById('ingresos').value);
+            let gastos = parseFloat(document.getElementById('gastos').value);
+            
+            if (!ingresos || !gastos) {
+                alert("Por favor ingresa todos los valores.");
+                return;
+            }
+            
+            let balance = ingresos - gastos;
+            document.getElementById('resultadoBalance').innerText = `Balance Financiero: $${balance.toFixed(2)}`;
+
+            // Recomendación
+            if (balance < 0) {
+                document.getElementById('recomendacionBalance').innerText = "Estás gastando más de lo que ingresas. Revisa tus gastos y ajusta tu presupuesto.";
+            } else {
+                document.getElementById('recomendacionBalance').innerText = "Tus finanzas están en orden. ¡Continúa ahorrando!";
+            }
         }
 
+        // Valor Futuro
         function calcularValorFuturo() {
-            var capital = parseFloat(document.getElementById('capitalFuturo').value);
-            var tasa = parseFloat(document.getElementById('tasaFuturo').value) / 100;
-            var tiempo = parseFloat(document.getElementById('tiempoFuturo').value);
-            google.script.run.withSuccessHandler(function(result) {
-                document.getElementById('resultadoFuturo').innerText = `Valor Futuro: $${result.toFixed(2)}`;
-            }).calcularValorFuturo(capital, tasa, tiempo);
+            let capital = parseFloat(document.getElementById('capitalFuturo').value);
+            let tasa = parseFloat(document.getElementById('tasaFuturo').value) / 100;
+            let tiempo = parseFloat(document.getElementById('tiempoFuturo').value);
+
+            if (!capital || !tasa || !tiempo) {
+                alert("Por favor ingresa todos los valores.");
+                return;
+            }
+
+            let valorFuturo = capital * Math.pow(1 + tasa, tiempo);
+            document.getElementById('resultadoFuturo').innerText = `El valor futuro de tu inversión es $${valorFuturo.toFixed(2)}`;
+
+            // Recomendación
+            if (tasa > 10) {
+                document.getElementById('recomendacionFuturo').innerText = "Excelente tasa de retorno. Considera invertir más si puedes.";
+            } else {
+                document.getElementById('recomendacionFuturo').innerText = "La tasa de retorno es moderada. Considera otras opciones si buscas mayores ganancias.";
+            }
         }
 
+        // CAGR
         function calcularCAGR() {
-            var valorInicial = parseFloat(document.getElementById('valorInicialCAGR').value);
-            var valorFinal = parseFloat(document.getElementById('valorFinalCAGR').value);
-            var tiempo = parseFloat(document.getElementById('tiempoCAGR').value);
-            google.script.run.withSuccessHandler(function(result) {
-                document.getElementById('resultadoCAGR').innerText = `CAGR: ${result.toFixed(2)}%`;
-            }).calcularCAGR(valorInicial, valorFinal, tiempo);
+            let valorInicial = parseFloat(document.getElementById('valorInicialCAGR').value);
+            let valorFinal = parseFloat(document.getElementById('valorFinalCAGR').value);
+            let tiempo = parseFloat(document.getElementById('tiempoCAGR').value);
+
+            if (!valorInicial || !valorFinal || !tiempo) {
+                alert("Por favor ingresa todos los valores.");
+                return;
+            }
+
+            let CAGR = Math.pow(valorFinal / valorInicial, 1 / tiempo) - 1;
+            CAGR = CAGR * 100;
+            document.getElementById('resultadoCAGR').innerText = `La Tasa de Crecimiento Anual Compuesta (CAGR) es ${CAGR.toFixed(2)}%`;
+
+            // Recomendación
+            if (CAGR > 10) {
+                document.getElementById('recomendacionCAGR').innerText = "¡Excelente tasa de crecimiento! Tu inversión está creciendo rápidamente.";
+            } else {
+                document.getElementById('recomendacionCAGR').innerText = "La tasa de crecimiento es moderada. Considera revisar otras alternativas de inversión.";
+            }
         }
     </script>
 </body>
