@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadoras Financieras</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        h1, h2 {
+            color: #2E8B57;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        .instructions {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        .section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            border-left: 5px solid #4CAF50;
+        }
+        .section h2 {
+            margin-top: 0;
+        }
+        label {
+            font-size: 14px;
+            color: #444;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+        }
+        input[type="number"], input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: #2E8B57;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #257d46;
+        }
+        .result {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-top: 10px;
+        }
+        .recommendation {
+            font-size: 16px;
+            color: #888;
+            margin-top: 10px;
+            font-style: italic;
+        }
+        .alert {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .alert-warning {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        .note {
+            font-size: 14px;
+            color: #888;
+            text-align: center;
+            margin-top: 40px;
+        }
+        .important {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .highlight {
+            color: #3498db;
+            font-weight: bold;
+        }
+        .example {
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadoras Financieras</h1>
+        <p class="instructions">Estas herramientas te ayudarán a tomar decisiones financieras informadas. Ingresa los datos requeridos en cada calculadora y recibe recomendaciones basadas en los resultados.</p>
+
+        <!-- Interés Simple -->
+        <div class="section">
+            <h2>1. Cálculo de Interés Simple</h2>
+            <label for="capital">Capital Inicial (en $):</label>
+            <input type="number" id="capital" placeholder="Ej: 1000" required>
+            <label for="tasa">Tasa de Interés Anual (%):</label>
+            <input type="number" id="tasa" placeholder="Ej: 5" required>
+            <label for="tiempo">Tiempo (en años):</label>
+            <input type="number" id="tiempo" placeholder="Ej: 3" required>
+            <button onclick="calcularInteresSimple()">Calcular Interés Simple</button>
+
+            <div id="resultadoSimple" class="result"></div>
+            <div id="recomendacionSimple" class="recommendation"></div>
+        </div>
+
+        <!-- Interés Compuesto -->
+        <div class="section">
+            <h2>2. Cálculo de Interés Compuesto</h2>
+            <label for="capitalCompuesto">Capital Inicial (en $):</label>
+            <input type="number" id="capitalCompuesto" placeholder="Ej: 1000" required>
+            <label for="tasaCompuesto">Tasa de Interés Anual (%):</label>
+            <input type="number" id="tasaCompuesto" placeholder="Ej: 5" required>
+            <label for="tiempoCompuesto">Tiempo (en años):</label>
+            <input type="number" id="tiempoCompuesto" placeholder="Ej: 3" required>
+            <button onclick="calcularInteresCompuesto()">Calcular Interés Compuesto</button>
+
+            <div id="resultadoCompuesto" class="result"></div>
+            <div id="alertaCompuesto" class="alert"></div>
+        </div>
+
+        <!-- Rentabilidad de Inversión -->
+        <div class="section">
+            <h2>3. Rentabilidad de una Inversión</h2>
+            <label for="valorInicial">Valor Inicial de la Inversión (en $):</label>
+            <input type="number" id="valorInicial" placeholder="Ej: 1000" required>
+            <label for="valorFinal">Valor Final de la Inversión (en $):</label>
+            <input type="number" id="valorFinal" placeholder="Ej: 1500" required>
+            <button onclick="calcularRentabilidad()">Calcular Rentabilidad</button>
+
+            <div id="resultadoRentabilidad" class="result"></div>
+        </div>
+
+        <!-- Balance Financiero -->
+        <div class="section">
+            <h2>4. Cálculo de Balance Financiero</h2>
+            <label for="ingresos">Ingresos Mensuales (en $):</label>
+            <input type="number" id="ingresos" placeholder="Ej: 3000" required>
+            <label for="gastos">Gastos Mensuales (en $):</label>
+            <input type="number" id="gastos" placeholder="Ej: 2500" required>
+            <button onclick="calcularBalance()">Calcular Balance</button>
+
+            <div id="resultadoBalance" class="result"></div>
+            <div id="recomendacionBalance" class="recommendation"></div>
+        </div>
+
+        <!-- Valor Futuro de la Inversión -->
+        <div class="section">
+            <h2>5. Cálculo del Valor Futuro</h2>
+            <label for="capitalFuturo">Capital Inicial (en $):</label>
+            <input type="number" id="capitalFuturo" placeholder="Ej: 1000" required>
+            <label for="tasaFuturo">Tasa de Interés Anual (%):</label>
+            <input type="number" id="tasaFuturo" placeholder="Ej: 5" required>
+            <label for="tiempoFuturo">Tiempo (en años):</label>
+            <input type="number" id="tiempoFuturo" placeholder="Ej: 3" required>
+            <button onclick="calcularValorFuturo()">Calcular Valor Futuro</button>
+
+            <div id="resultadoFuturo" class="result"></div>
+        </div>
+
+        <!-- CAGR -->
+        <div class="section">
+            <h2>6. Cálculo de CAGR</h2>
+            <label for="valorInicialCAGR">Valor Inicial (en $):</label>
+            <input type="number" id="valorInicialCAGR" placeholder="Ej: 1000" required>
+            <label for="valorFinalCAGR">Valor Final (en $):</label>
+            <input type="number" id="valorFinalCAGR" placeholder="Ej: 1500" required>
+            <label for="tiempoCAGR">Tiempo (en años):</label>
+            <input type="number" id="tiempoCAGR" placeholder="Ej: 3" required>
+            <button onclick="calcularCAGR()">Calcular CAGR</button>
+
+            <div id="resultadoCAGR" class="result"></div>
+        </div>
+
+        <div class="note">
+            <p class="example">Ejemplo: Si tu tasa es del 5%, el capital inicial es $1000 y el tiempo es de 3 años, puedes usar estas calculadoras para ver cómo crecerá tu dinero, comparar diferentes tasas de interés, y elegir la mejor opción de inversión.</p>
+        </div>
+    </div>
+
+    <script>
+        function calcularInteresSimple() {
+            var capital = parseFloat(document.getElementById('capital').value);
+            var tasa = parseFloat(document.getElementById('tasa').value) / 100;
+            var tiempo = parseFloat(document.getElementById('tiempo').value);
+            google.script.run.withSuccessHandler(function(result) {
+                document.getElementById('resultadoSimple').innerText = `Interés Simple: $${result.toFixed(2)}`;
+                document.getElementById('recomendacionSimple').innerText = `Recomendación: El interés simple es útil para plazos cortos o tasas bajas.`;
+            }).calcularInteresSimple(capital, tasa, tiempo);
+        }
+
+        function calcularInteresCompuesto() {
+            var capital = parseFloat(document.getElementById('capitalCompuesto').value);
+            var tasa = parseFloat(document.getElementById('tasaCompuesto').value) / 100;
+            var tiempo = parseFloat(document.getElementById('tiempoCompuesto').value);
+            google.script.run.withSuccessHandler(function(result) {
+                document.getElementById('resultadoCompuesto').innerText = `Interés Compuesto: $${result.toFixed(2)}`;
+                if (tasa > 0.5) {
+                    document.getElementById('alertaCompuesto').innerText = '¡Advertencia! La tasa de interés es muy alta, verifica si es realista.';
+                }
+            }).calcularInteresCompuesto(capital, tasa, tiempo);
+        }
+
+        function calcularRentabilidad() {
+            var valorInicial = parseFloat(document.getElementById('valorInicial').value);
+            var valorFinal = parseFloat(document.getElementById('valorFinal').value);
+            google.script.run.withSuccessHandler(function(result) {
+                document.getElementById('resultadoRentabilidad').innerText = `Rentabilidad: ${result.toFixed(2)}%`;
+            }).calcularRentabilidad(valorInicial, valorFinal);
+        }
+
+        function calcularBalance() {
+            var ingresos = parseFloat(document.getElementById('ingresos').value);
+            var gastos = parseFloat(document.getElementById('gastos').value);
+            google.script.run.withSuccessHandler(function(result) {
+                document.getElementById('resultadoBalance').innerText = `Balance Financiero: $${result.toFixed(2)}`;
+                if (result < 0) {
+                    document.getElementById('recomendacionBalance').innerText = 'Advertencia: Tu balance es negativo, es hora de revisar tus gastos.';
+                }
+            }).calcularBalance(ingresos, gastos);
+        }
+
+        function calcularValorFuturo() {
+            var capital = parseFloat(document.getElementById('capitalFuturo').value);
+            var tasa = parseFloat(document.getElementById('tasaFuturo').value) / 100;
+            var tiempo = parseFloat(document.getElementById('tiempoFuturo').value);
+            google.script.run.withSuccessHandler(function(result) {
+                document.getElementById('resultadoFuturo').innerText = `Valor Futuro: $${result.toFixed(2)}`;
+            }).calcularValorFuturo(capital, tasa, tiempo);
+        }
+
+        function calcularCAGR() {
+            var valorInicial = parseFloat(document.getElementById('valorInicialCAGR').value);
+            var valorFinal = parseFloat(document.getElementById('valorFinalCAGR').value);
+            var tiempo = parseFloat(document.getElementById('tiempoCAGR').value);
+            google.script.run.withSuccessHandler(function(result) {
+                document.getElementById('resultadoCAGR').innerText = `CAGR: ${result.toFixed(2)}%`;
+            }).calcularCAGR(valorInicial, valorFinal, tiempo);
+        }
+    </script>
+</body>
+</html>
